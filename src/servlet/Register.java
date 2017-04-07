@@ -79,13 +79,8 @@ public class Register extends HttpServlet {
 
 		if ((msgVal == null) && (msgVal2 == null) && (msgVal3 == null) && (msgVal4 == null)){
 
-			User user = new User();
+			User user = new User(firstName,lastName,address,email,pwd);
 
-			user.setFirstName(firstName);
-			user.setLastName(lastName);
-			user.setMail(email);
-			user.setPwd(pwd);
-			user.setAddress(address);
 
 			response.sendRedirect("CompleteProfil");
 		}
