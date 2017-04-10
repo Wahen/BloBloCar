@@ -21,7 +21,11 @@
                     <th>Nom</th>
                 </tr>
                 <c:forEach items="${ sessionScope.users }" var="mapUsers" varStatus="boucle">
-                    <td>${ mapUsers.firstName }</td>
+                    <td>${ mapUsers.firstName } 
+                    <p>   ......  </p> 
+                 	<a href="EditUser?user=${user.getId()}">Edit</a>
+                    
+                     
                 </c:forEach>
             </table>
             

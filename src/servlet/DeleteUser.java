@@ -21,8 +21,8 @@ import service.FieldValidation;
 /**
  * Servlet implementation class AddUser
  */
-@WebServlet("/Register")
-public class Register extends HttpServlet {
+@WebServlet("/DeleteUSer")
+public class DeleteUser extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	public static final String FIELD_EMAIL = "email";
@@ -37,7 +37,7 @@ public class Register extends HttpServlet {
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
-	public Register() {
+	public DeleteUser() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
