@@ -20,7 +20,7 @@ public class FieldValidation {
 	
 	public static String validateFirstName(String firstName) {
 		if (firstName.length() < 3)
-			return "Votre prenom doit comporter au moins trois caractères";
+			return "Votre prénom doit comporter au moins trois caractères";
 		return null;
 	}
 	

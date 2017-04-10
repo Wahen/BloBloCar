@@ -11,7 +11,7 @@
 
 	<p>Bienvenue sur BloBloCar</p>
 
-<a href="Register"> Formulaire </a>
+<a href="Register"> Inscription </a>
 
 <p> <%= new java.util.Date()%></p>
 

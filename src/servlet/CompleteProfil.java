@@ -34,7 +34,7 @@ public class CompleteProfil extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
 
-		RequestDispatcher dispatch = request.getRequestDispatcher("WEB-INF/CompleteProfil.jsp");
+		RequestDispatcher dispatch = request.getRequestDispatcher("WEB-INF/complete_profil/CompleteProfil.jsp");
 		dispatch.forward(request, response);
 	}
 

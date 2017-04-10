@@ -24,7 +24,7 @@ public class Register extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	public static final String FIELD_EMAIL = "email";
-	public static final String FIELD_PWD = "pwd";
+	public static final String FIELD_PWD = "pwd1";
 	public static final String FIELD_FIRSTNAME = "firstName";
 	public static final String FIELD_LASTNAME = "lastName";
 	public static final String FIELD_ADDRESS = "address";
@@ -44,7 +44,7 @@ public class Register extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		RequestDispatcher dispatch = request.getRequestDispatcher("WEB-INF/Register.jsp");
+		RequestDispatcher dispatch = request.getRequestDispatcher("WEB-INF/register/Register.jsp");
 		dispatch.forward(request, response);
 	}
 
