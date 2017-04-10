@@ -8,13 +8,12 @@
 <title>BloBlocar</title>
 </head>
 <body>
-	<c:import url="/WEB-INF/menu/menu.jsp" />
 	<p>Bienvenue sur BloBloCar</p>
+	<c:import url="/WEB-INF/menu/menu.jsp" />
 
 <%-- <a href="Register"> Inscription </a> --%>
 
 <p> <%= new java.util.Date()%></p>
-
 
 </body>
 </html>

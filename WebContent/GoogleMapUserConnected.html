@@ -1,6 +1,6 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="fr">
 <head>
-<title>BloBloCar Map</title>
+<title>BloBloCar Map 2</title>
 <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
 <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
 <script type="text/javascript">
@@ -31,6 +31,18 @@
 						map : carte,
 						center : new google.maps.LatLng(latitude, longitude),
 						radius: 1000 //l'intégrer avec valeur de rayonConducteur
+					});
+					var marqueur = new google.maps.Marker({
+					    position: new google.maps.LatLng(latitude, longitude),
+					    map: carte,
+					    icon : 
+					});
+					var info = new google.maps.InfoWindow({
+					    content: "Utilisateur",
+					    size: new google.maps.Size(100, 100)
+					});
+					google.maps.event.addListener(marker, 'click', function(){
+						info.open(carte, marqueur);
 					});
 				}
 			});

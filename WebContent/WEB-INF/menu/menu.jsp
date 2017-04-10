@@ -2,5 +2,10 @@
 <div id="menu">
 	<p><a href="<c:url value="/Register"/>">Créer son profil</a></p>
     <p><a href="<c:url value="/"/>">Accueil</a></p>
+    
+    <%-- <c:if test="${ statusUserDisconnected }"> --%>
+    	<c:import url="/GoogleMap.html"/>
+    <%-- <c:if test="${ statusUserConnected }"> --%>
+       <%-- <c:import url="/GoogleMapUserConnected.html"/> --%>
 </div>
 <br/>
