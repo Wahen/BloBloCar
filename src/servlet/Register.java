@@ -12,6 +12,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import service.UserManager;
+
 import model.ListeUtilisateur;
 import model.User;
 import service.FieldValidation;
@@ -29,6 +31,8 @@ public class Register extends HttpServlet {
 	public static final String FIELD_LASTNAME = "lastName";
 	public static final String FIELD_ADDRESS = "address";
 	public static final String FIELD_PWDCONFIRM = "pwdConfirm";
+	
+	public static final String ATT_USERS = "users";
 
 	/**
 	 * @see HttpServlet#HttpServlet()
@@ -37,7 +41,11 @@ public class Register extends HttpServlet {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-
+	@Override
+	    public void init() throws ServletException {
+	    	super.init();
+	        this.getServletContext().setAttribute( ATT_USERS, UserManager.getUserManager().getAllUser() );
+	}
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
 	 *      response)
@@ -54,8 +62,6 @@ public class Register extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		HttpSession session = request.getSession();
-		ListeUtilisateur users = (ListeUtilisateur) session.getAttribute("users");
 
 		String email = request.getParameter(FIELD_EMAIL);
 		String pwd = request.getParameter(FIELD_PWD);
@@ -64,50 +70,67 @@ public class Register extends HttpServlet {
 		String address = request.getParameter(FIELD_ADDRESS);
 		String pwdConfirm = request.getParameter(FIELD_PWDCONFIRM);
 
-		
 		Map<String, String> erreurs = new HashMap<String, String>();
 		Map<String, String> form = new HashMap<String, String>();
 
-		
-		String msgVal4 = null;
-		String msgVal3 = null;
-		String msgVal2 = null;
 		String msgVal = null;
 
-		msgVal  = FieldValidation.validatePwd(pwd, pwdConfirm);
-		msgVal2 = FieldValidation.validateFirstName(firstName);
-		msgVal3 = FieldValidation.validateLastName(lastName);
-		msgVal4 = FieldValidation.validateEmail(email);
+		msgVal = FieldValidation.validatePwd(pwd, pwdConfirm);
+		if (msgVal == null) {
 
-		
-			
-		if ((msgVal == null) && (msgVal2 == null) && (msgVal3 == null) && (msgVal4 == null)){
-
-			
-			
-			
-			
-			User user = new User(firstName,lastName,address,email,pwd);
-
-
-
-			
-			response.sendRedirect("CompleteProfil");
-			
-			
-			
+			form.put(FIELD_PWD, pwd);
+		} else {
+			erreurs.put(FIELD_PWDCONFIRM, msgVal);
 		}
-
 		
-		
-		else {
+		msgVal = FieldValidation.validateFirstName(firstName);
+		if (msgVal == null) {
 
-			
-			
-			response.sendRedirect("Register");
-			
+			form.put(FIELD_FIRSTNAME, firstName);
+		} else {
+			erreurs.put(FIELD_FIRSTNAME, msgVal);
 		}
+		
+		msgVal = FieldValidation.validateLastName(lastName);
+		if (msgVal == null) {
+
+			form.put(FIELD_LASTNAME, lastName);
+		} else {
+			erreurs.put(FIELD_LASTNAME, msgVal);
+		}
+		
+		msgVal = FieldValidation.validateEmail(email);
+		if (msgVal == null) {
+
+			form.put(FIELD_EMAIL, email);
+		} else {
+			erreurs.put(FIELD_EMAIL, msgVal);
+		}
+		
+		
+		User newUser = null;
+		
+		if(erreurs.isEmpty()==true) {
+			HttpSession session = request.getSession();
+			newUser = new User(firstName, lastName, address, email, pwd);
+			
+			UserManager.getUserManager().addUser(newUser);
+			
+			session.setAttribute( ATT_USERS, UserManager.getUserManager().getAllUser() );
+			this.getServletContext().setAttribute( ATT_USERS, UserManager.getUserManager().getAllUser() );
+			
+			form = new HashMap<String, String>();
+		}
+		request.setAttribute("newUser", newUser);
+        request.setAttribute("form", form);
+        request.setAttribute("erreurs", erreurs);
+        
+		response.sendRedirect("CompleteProfil");
 
 	}
+
+	// else {
+
+	// response.sendRedirect("Register");
 
 }
