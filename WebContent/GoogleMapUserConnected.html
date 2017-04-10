@@ -34,14 +34,13 @@
 					});
 					var marqueur = new google.maps.Marker({
 					    position: new google.maps.LatLng(latitude, longitude),
-					    map: carte,
-					    icon : 
+					    map: carte
 					});
 					var info = new google.maps.InfoWindow({
-					    content: "Utilisateur",
+					    content: "Utilisateur", //Getter name, surname, adress, phone...
 					    size: new google.maps.Size(100, 100)
 					});
-					google.maps.event.addListener(marker, 'click', function(){
+					google.maps.event.addListener(marqueur, 'click', function(){
 						info.open(carte, marqueur);
 					});
 				}
