@@ -64,9 +64,11 @@ public class Register extends HttpServlet {
 		String address = request.getParameter(FIELD_ADDRESS);
 		String pwdConfirm = request.getParameter(FIELD_PWDCONFIRM);
 
-		// Map<String, String> erreurs = new HashMap<String, String>();
-		// Map<String, String> form = new HashMap<String, String>();
+		
+		Map<String, String> erreurs = new HashMap<String, String>();
+		Map<String, String> form = new HashMap<String, String>();
 
+		
 		String msgVal4 = null;
 		String msgVal3 = null;
 		String msgVal2 = null;
@@ -77,16 +79,31 @@ public class Register extends HttpServlet {
 		msgVal3 = FieldValidation.validateLastName(lastName);
 		msgVal4 = FieldValidation.validateEmail(email);
 
+		
+			
 		if ((msgVal == null) && (msgVal2 == null) && (msgVal3 == null) && (msgVal4 == null)){
 
+			
+			
+			
+			
 			User user = new User(firstName,lastName,address,email,pwd);
 
 
+
+			
 			response.sendRedirect("CompleteProfil");
+			
+			
+			
 		}
 
+		
+		
 		else {
 
+			
+			
 			response.sendRedirect("Register");
 			
 		}
