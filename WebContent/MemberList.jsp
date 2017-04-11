@@ -17,25 +17,21 @@
             <%-- Sinon, affichage du tableau. --%>
             <c:otherwise>
             <table>
-                <tr>
-                   
-                </tr>
+
                 <c:forEach items="${ sessionScope.users }" var="mapUsers" varStatus="boucle">
+
                     <td>
-                    
                    		Nom:	 ${ mapUsers.firstName} 
                     	Prenom:  ${ mapUsers.lastName} 
                     	mail:    ${ mapUsers.mail}  	
           				ville:	 ${ mapUsers.address_ville}
                     	nbrue:	 ${ mapUsers.address_nbrue}
                     	rue:	 ${ mapUsers.address_rue}
-                    	 
-                    	
+
                      </td>
                    
                  	<a href="EditUser">Edit</a>
-                    
-                     
+
                 </c:forEach>
             </table>
             

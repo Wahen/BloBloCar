@@ -79,43 +79,31 @@ public class Register extends HttpServlet {
 		Map<String, String> erreurs = new HashMap<String, String>();
 		Map<String, String> form = new HashMap<String, String>();
 
+		String actionMessage=null;
 		String msgVal = null;
 
 		msgVal = FieldValidation.validatePwd(pwd, pwdConfirm);
 		if (msgVal == null) {
-
 			form.put(FIELD_PWD, pwd);
-		} else {
-			erreurs.put(FIELD_PWDCONFIRM, msgVal);
-		}
+		} else {erreurs.put(FIELD_PWDCONFIRM, msgVal);}
 		
 		msgVal = FieldValidation.validateFirstName(firstName);
 		if (msgVal == null) {
-
 			form.put(FIELD_FIRSTNAME, firstName);
-		} else {
-			erreurs.put(FIELD_FIRSTNAME, msgVal);
-		}
+		} else {erreurs.put(FIELD_FIRSTNAME, msgVal);}
 		
 		msgVal = FieldValidation.validateLastName(lastName);
 		if (msgVal == null) {
-
 			form.put(FIELD_LASTNAME, lastName);
-		} else {
-			erreurs.put(FIELD_LASTNAME, msgVal);
-		}
+		} else {erreurs.put(FIELD_LASTNAME, msgVal);}
 		
 		msgVal = FieldValidation.validateEmail(email);
 		if (msgVal == null) {
-
 			form.put(FIELD_EMAIL, email);
-		} else {
-			erreurs.put(FIELD_EMAIL, msgVal);
-		}
-		
+		} else {erreurs.put(FIELD_EMAIL, msgVal);}
 		
 		User newUser = null;
-		
+		boolean statusOk=false;
 		if(erreurs.isEmpty()==true) {
 			HttpSession session = request.getSession();
 			newUser = new User(firstName, lastName, address_ville, address_rue, address_nbrue, email, pwd);
@@ -125,13 +113,24 @@ public class Register extends HttpServlet {
 			session.setAttribute( ATT_USERS, UserManager.getUserManager().getAllUser() );
 			this.getServletContext().setAttribute( ATT_USERS, UserManager.getUserManager().getAllUser() );
 			
+			actionMessage="Succès de l'inscription";
 			form = new HashMap<String, String>();
+			statusOk = true;
 		}
+		else {
+			actionMessage = "Echec de l'inscription";
+		}
+			
 		request.setAttribute("newUser", newUser);
         request.setAttribute("form", form);
         request.setAttribute("erreurs", erreurs);
+        request.setAttribute("statusOk", statusOk);
+        request.setAttribute("actionMessage", actionMessage);
         
-		response.sendRedirect("CompleteProfil");
+        if(statusOk == true ) {
+        	this.getServletContext().getRequestDispatcher("/index.jsp").include( request, response );
+        }
+        else { this.getServletContext().getRequestDispatcher("/WEB-INF/register/Register.jsp").include( request, response );}
 
 	}
 

@@ -112,7 +112,7 @@ public class DeleteUser extends HttpServlet {
 		
 		if(erreurs.isEmpty()==true) {
 			HttpSession session = request.getSession();
-			newUser = new User(firstName, lastName, address, email, pwd);
+			/*newUser = new User(firstName, lastName, address, email, pwd);*/
 			
 			UserManager.getUserManager().addUser(newUser);
 			
@@ -134,3 +134,4 @@ public class DeleteUser extends HttpServlet {
 	// response.sendRedirect("Register");
 
 }
+
