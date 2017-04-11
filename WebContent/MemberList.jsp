@@ -19,9 +19,13 @@
             <table>
                 <tr>
                     <th>Nom</th>
+                    <th>Mail</th>
+                    <th>pwd</th>
                 </tr>
                 <c:forEach items="${ sessionScope.users }" var="mapUsers" varStatus="boucle">
-                    <td>${ mapUsers.firstName }</td>
+                    <td>${mapUsers.firstName }</td>
+                    <td>${mapUsers.mail}</td>
+                    <td>${mapUsers.pwd}</td>
                 </c:forEach>
             </table>
             

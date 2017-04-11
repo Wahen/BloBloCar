@@ -11,6 +11,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import service.ConnectValidation;
+import service.FieldValidation;
+
 /**
  * Servlet implementation class login
  */
@@ -62,29 +65,42 @@ public class Login extends HttpServlet {
         error = new HashMap<String, String>();
         form = new HashMap<String, String>();
         statusMessage=null;
-        
+        String login = null;
         // Validate page
-
+        String msgVal = FieldValidation.validateEmail(email);
+        if(msgVal==null) {
         	form.put(FIELD_EMAIL, email);
+        }
+        else {error.put(FIELD_EMAIL, msgVal);}	
+        
+        msgVal = ConnectValidation.pwdValidation(pwd);
+        if(msgVal==null) {
         	form.put(FIELD_PWD, pwd);
-
-        if(error.isEmpty()){
+        }
+        else {error.put(FIELD_PWD, pwd);}
+        
+        String msgAuthentif = ConnectValidation.authenticate(email,pwd);
+        if(error.isEmpty()==true && msgAuthentif == null){
         	statusOk=true;
-        	statusMessage="Connecté";
+        	statusMessage="Connecté"+msgAuthentif;
+        	login = email;
         }
         else{
         	statusOk=false;
-        	statusMessage="Connexion refusée";
+        	statusMessage="Connexion refusée"+msgAuthentif;
         }
      // Prepare model to view
         request.setAttribute("form", form);
         request.setAttribute("error", error);
         request.setAttribute("statusOK", statusOk);
         request.setAttribute("statusMessage", statusMessage);
+        request.setAttribute("login", login);
         
         // Build view
-		this.getServletContext().getRequestDispatcher(VIEW_PAGES_URL).include( request, response );
-        
+        if(statusOk == true) {
+        	this.getServletContext().getRequestDispatcher("/index.jsp").include( request, response );
+        }
+        else {this.getServletContext().getRequestDispatcher(VIEW_PAGES_URL).include( request, response ); }
 	}
 
 }
