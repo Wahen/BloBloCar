@@ -22,8 +22,12 @@
 		
 		<p>PwdConfirm : <input type="password" id="pwdConfirm" name="pwdConfirm" placeholder="pwd" maxlength="20"></p>
 	
-		<p>Address : <input type="text" name="address" placeholder="address"></p>
-
+		<p> Ville : <input type="text" name="address_ville" placeholder="ville"></p>
+		
+		<p> Rue : <input type="text" name="address_rue" placeholder="rue"></p>
+		
+		<p> Nbrue : <input type="text" name="address_nbrue" placeholder="Nbrue"></p>
+		
 		<p><input type="submit" value="Save new User" /></p>
 
 	</form>

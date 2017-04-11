@@ -29,7 +29,10 @@ public class Register extends HttpServlet {
 	public static final String FIELD_PWD = "pwd1";
 	public static final String FIELD_FIRSTNAME = "firstName";
 	public static final String FIELD_LASTNAME = "lastName";
-	public static final String FIELD_ADDRESS = "address";
+	public static final String FIELD_ADDRESS_VILLE = "address_ville";
+	public static final String FIELD_ADDRESS_RUE = "address_rue";
+	public static final String FIELD_ADDRESS_NBRUE = "address_nbrue";
+	
 	public static final String FIELD_PWDCONFIRM = "pwdConfirm";
 	
 	public static final String ATT_USERS = "users";
@@ -67,7 +70,10 @@ public class Register extends HttpServlet {
 		String pwd = request.getParameter(FIELD_PWD);
 		String firstName = request.getParameter(FIELD_FIRSTNAME);
 		String lastName = request.getParameter(FIELD_LASTNAME);
-		String address = request.getParameter(FIELD_ADDRESS);
+		String address_ville = request.getParameter(FIELD_ADDRESS_VILLE);
+		String address_rue =request.getParameter(FIELD_ADDRESS_RUE);
+		String address_nbrue= request.getParameter(FIELD_ADDRESS_NBRUE);
+		
 		String pwdConfirm = request.getParameter(FIELD_PWDCONFIRM);
 
 		Map<String, String> erreurs = new HashMap<String, String>();
@@ -112,7 +118,7 @@ public class Register extends HttpServlet {
 		
 		if(erreurs.isEmpty()==true) {
 			HttpSession session = request.getSession();
-			newUser = new User(firstName, lastName, address, email, pwd);
+			newUser = new User(firstName, lastName, address_ville, address_rue, address_nbrue, email, pwd);
 			
 			UserManager.getUserManager().addUser(newUser);
 			

@@ -15,7 +15,15 @@
 <p>Last name : <input type="text" name="lastname" value="${user.getLastName()}"></p>
 <p>Email : <input type="email" name="email" value="${user.getEmail()}"></p>
 <p>pwd : <input type="password" name="pwd" placeholder="pwd"> </p>
-<p>Address: <input type="text" name="address" value= "${user.getAddress()}"> </p>
+
+
+<p> Ville : <input type="text" name="address_ville" value ="${user.getAddress_ville()}"></p>
+		
+<p> Rue : <input type="text" name="address_rue" value ="${user.getAddress_rue()}"></p>
+		
+<p> Nbrue : <input type="text" name="address_nbrue" value ="${user.getAddress_nbrue()}"></p>
+
+
 
 <p><input type="submit" value="Save User"/></p>
 
