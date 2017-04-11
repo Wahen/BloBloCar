@@ -63,7 +63,7 @@ public class CompleteProfil extends HttpServlet {
 		user.setAcceptSmokerPassenger(acceptSmokerPassenger);
 		
 		
-		//response.sendRedirect("DetailUser?user=" + user.getId());
+		response.sendRedirect("menu/menu");
 	}
 
 }

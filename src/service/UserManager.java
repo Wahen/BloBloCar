@@ -25,6 +25,10 @@ public class UserManager {
 		allUser.add(u);
 	}
 	
+	public void deleteUser(User u){
+		allUser.remove(u);
+	}
+	
 	public List<User> getAllUser(){
 		return allUser;
 	}
