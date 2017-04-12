@@ -11,14 +11,15 @@
 <script type="text/javascript">
 var liste = [{
 	<c:forEach items="${ sessionScope.users }" var="mapUsers"
-		varStatus="boucle">
+		varStatus="boucle">{
 		nom: ${ mapUsers.firstName},
 		prenom: ${ mapUsers.lastName},
 		perimetre: ${ mapUsers.mobilityDriver},
 		mail: ${ mapUsers.mail},
 		adresse: ${ "mapUsers.address_ville"+", "+"mapUsers.address_nbrue"+", "+"mapUsers.address_rue"}
+		}
 	</c:forEach>
-}];
+];
 </script>
 </body>
 </html>
