@@ -22,7 +22,7 @@
 <p>Voiture fumeurs : <input type="radio" name="acceptSmokerPassenger" value="Oui">Oui  <input type="radio" name="acceptSmokerPassenger" value="Non">Non  <input type="radio" name="acceptSmokerPassenger" value="Indifférant">Indifférent</p>
 
 
-<p><input type="submit" value="Save User"/></p>
+<p><input type="submit" value="Save profil"/></p>
 </form>
 
 </body>

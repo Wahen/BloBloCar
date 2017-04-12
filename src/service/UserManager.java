@@ -25,8 +25,14 @@ public class UserManager {
 		allUser.add(u);
 	}
 	
-	public void deleteUser(User u){
-		allUser.remove(u);
+	public void deleteUser(String mail){
+	  	List<User> liste = UserManager.getUserManager().getAllUser();
+    	for (User user : liste) {
+			if(user.getMail().equals(mail)) {
+				allUser.remove(user);
+				break;
+			}
+    	}
 	}
 	
 	public List<User> getAllUser(){
