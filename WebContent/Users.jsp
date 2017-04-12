@@ -1,29 +1,20 @@
-<%@ page language="java" 
-	contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"
-    import="java.util.*, model.*"
-%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<!DOCTYPE html>
-
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+	pageEncoding="ISO-8859-1"%>
+<!DOCTYPE html PUBLIC >
 <html>
-	<head>
-		<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-		<title>Users List</title>
-	</head>
-	<body>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>Register</title>
+</head>
+<body>
+	<h2>Inscription</h2>
+	<form action="AllUsers" method="post">
 	
-		<ul>
-		
-		<c:forEach var="user" items="${users}" varStatus="stat">
-			<li>First name : ${user.value.getFirstName()} 
-				Last name : ${user.value.getLastName()} 
-
-
-		</c:forEach>
-		</ul>	
-	   
-		
-	</body>
+		<p>Random Creation</p>
 	
+		<p><input type="submit" value="Create random" /></p>	
+		
+	</form>
+	
+</body>
 </html>

@@ -14,7 +14,6 @@ import javax.servlet.http.HttpSession;
 
 import service.UserManager;
 
-
 import model.User;
 import service.FieldValidation;
 
@@ -25,7 +24,6 @@ import service.FieldValidation;
 public class AllUsers extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-
 	public static final String ATT_USERS = "users";
 
 	/**
@@ -35,18 +33,20 @@ public class AllUsers extends HttpServlet {
 		super();
 		// TODO Auto-generated constructor stub
 	}
+
 	@Override
-	    public void init() throws ServletException {
-	    	super.init();
-	        this.getServletContext().setAttribute( ATT_USERS, UserManager.getUserManager().getAllUser() );
+	public void init() throws ServletException {
+		super.init();
+		this.getServletContext().setAttribute(ATT_USERS, UserManager.getUserManager().getAllUser());
 	}
+
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
 	 *      response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		RequestDispatcher dispatch = request.getRequestDispatcher("WEB-INF/register/Register.jsp");
+		RequestDispatcher dispatch = request.getRequestDispatcher("Users.jsp");
 		dispatch.forward(request, response);
 	}
 
@@ -57,39 +57,30 @@ public class AllUsers extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		User newUser = null;
-		
-
-		String firstName = "mic";
-		String lastName = "bob";
-		String address_ville = "str";
-		String address_rue = "neuo";
-		String address_nbrue= "5";
-		String email = "m@j.f";
-		String pwd = "111";
-	
-		
 		HttpSession session = request.getSession();
-		newUser = new User(firstName, lastName, address_ville, address_rue, address_nbrue, email, pwd);
+		User user1 = new User("mickael", "bob", "Strasbourg", "rue de rome", "5", "mickael@bob.fr", "1234", 1);
+		User user2 = new User("Boby", "bobo", "Illkirch", "rue du tramway", "4", "boby@bobo.fr", "789", 2);
+		User user3 = new User("Francois", "bob", "Lingolsheim", "rue de normandie", "15", "franc@bob.fr", "456", 1);
+		User user4 = new User("Dimitri", "boby", "Schiltigheim", "route de bischwiller", "43", "boby@bobo.fr", "159", 2);
+		
+		UserManager.getUserManager().addUser(user1);
+		UserManager.getUserManager().addUser(user2);
+		UserManager.getUserManager().addUser(user3);
+		UserManager.getUserManager().addUser(user4);
 
-			UserManager.getUserManager().addUser(newUser);
-			
+		this.getServletContext().setAttribute(ATT_USERS, UserManager.getUserManager().getAllUser());
+		request.setAttribute("user1", user1);
+		this.getServletContext().setAttribute(ATT_USERS, UserManager.getUserManager().getAllUser());
+		request.setAttribute("user2", user2);
+		this.getServletContext().setAttribute(ATT_USERS, UserManager.getUserManager().getAllUser());
+		request.setAttribute("user3", user3);
+		this.getServletContext().setAttribute(ATT_USERS, UserManager.getUserManager().getAllUser());
+		request.setAttribute("user4", user4);
 
-			this.getServletContext().setAttribute( ATT_USERS, UserManager.getUserManager().getAllUser() );
+		session.setAttribute(ATT_USERS, UserManager.getUserManager().getAllUser());
+		this.getServletContext().setAttribute(ATT_USERS, UserManager.getUserManager().getAllUser());
 
-			request.setAttribute("newUser", newUser);
-		
-		
-			
-			session.setAttribute(ATT_USERS, UserManager.getUserManager().getAllUser());
-			this.getServletContext().setAttribute(ATT_USERS, UserManager.getUserManager().getAllUser());
+		this.getServletContext().getRequestDispatcher("/index.jsp").include(request, response);
 
-		
-		
-		
-		
-
-        	this.getServletContext().getRequestDispatcher("/index.jsp").include( request, response );
-  
 	}
 }

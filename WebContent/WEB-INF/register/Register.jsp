@@ -31,6 +31,7 @@
 		<p><input type="submit" value="Save new User" /></p>
 
 		<p class="${statusOK ? 'succes' : 'erreur'}">${actionMessage}</p>
+		
 	</form>
 
 </body>

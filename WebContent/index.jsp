@@ -10,10 +10,12 @@
 <body>
 	<p>Bienvenue sur BloBloCar</p>
 	<c:import url="/WEB-INF/menu/menu.jsp" />
-
+	
+	<p> Create ramdom user </p>
 <%-- <a href="Register"> Inscription </a> --%>
 
 <p> <%= new java.util.Date()%></p>
+<a href="AllUsers"> Random  </a>
 
 </body>
 </html>
