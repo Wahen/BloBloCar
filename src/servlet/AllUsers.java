@@ -58,10 +58,10 @@ public class AllUsers extends HttpServlet {
 			throws ServletException, IOException {
 
 		HttpSession session = request.getSession();
-		User user1 = new User("mickael", "bob", "Strasbourg", "rue de rome", "5", "mickael@bob.fr", "1234", 1);
-		User user2 = new User("Boby", "bobo", "Illkirch", "rue du tramway", "4", "boby@bobo.fr", "789", 2);
-		User user3 = new User("Francois", "bob", "Lingolsheim", "rue de normandie", "15", "franc@bob.fr", "456", 1);
-		User user4 = new User("Dimitri", "boby", "Schiltigheim", "route de bischwiller", "43", "boby@bobo.fr", "159", 2);
+		User user1 = new User("mickael", "bob", "Strasbourg", "rue de rome", "5", "mickael@bob.fr", "1234");
+		User user2 = new User("Boby", "bobo", "Illkirch", "rue du tramway", "4", "boby@bobo.fr", "789");
+		User user3 = new User("Francois", "bob", "Lingolsheim", "rue de normandie", "15", "franc@bob.fr", "456");
+		User user4 = new User("Dimitri", "boby", "Schiltigheim", "route de bischwiller", "43", "boby@bobo.fr", "159");
 		
 		UserManager.getUserManager().addUser(user1);
 		UserManager.getUserManager().addUser(user2);

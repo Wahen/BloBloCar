@@ -142,7 +142,7 @@ public class User implements Serializable {
 	}
 
 	public User(String firstName, String lastName, String address_ville, String address_rue, String address_nbrue,
-			String mail, String pwd, int mobilityDriver) {
+			String mail, String pwd) {
 		super();
 
 		this.id = ++countid;
@@ -156,7 +156,7 @@ public class User implements Serializable {
 		this.gender = null;
 		this.smoker = null;
 		this.nbPlace = 0;
-		this.mobilityDriver = mobilityDriver;
+		this.mobilityDriver = 1;
 		this.acceptSmokerDriver = null;
 		this.mobilityPassenger = 0;
 		this.acceptSmokerPassenger = null;
