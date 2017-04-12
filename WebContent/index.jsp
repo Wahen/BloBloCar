@@ -8,7 +8,7 @@
 <title>BloBlocar</title>
 </head>
 <body>
-	<p>Bienvenue sur BloBloCar</p>
+	
 	<c:import url="/WEB-INF/menu/menu.jsp" />
 
 <%-- <a href="Register"> Inscription </a> --%>

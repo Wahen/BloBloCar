@@ -2,17 +2,21 @@
 <div id="menu">
 
 	<c:if test="${login==null}">
-	<p><a href="<c:url value="/Register"/>">Créer son profil</a></p>
+	<p>Bienvenue sur BloBloCar</p>
 	<p><a href="<c:url value="/login"/>">Se connecter</a></p>
+	<p><a href="<c:url value="/Register"/>">S'inscrire</a></p>
 	<p><a href="<c:url value="/MemberList.jsp"/>">Afficher les utilisateurs</a></p>
     <p><a href="<c:url value="/"/>">Accueil</a></p>
     <c:import url="/GoogleMap.html"/>
     </c:if>
     
-    <c:if test="${login!=null}">
+    <c:if test="${login!= null}">
+    <p>ReBonjour sur BloBloCar</p>
     <%-- <script type="text/javascript">var  userLogin=${login}</script>--%>
     <p><a href="<c:url value="/MemberList.jsp"/>">Afficher les utilisateurs</a></p>
     <p><a href="<c:url value="/"/>">Accueil</a></p>
+    <p><a href="<c:url value="/CompleteProfil"/>">Mon profil</a></p>
+    <p><a href="<c:url value="/Logout"/>">Déconnexion</a></p>
     <c:import url="/GoogleMapUserConnected.html"/>
     </c:if>	
     <%-- <c:if test="${ statusUserConnected }"> --%>
