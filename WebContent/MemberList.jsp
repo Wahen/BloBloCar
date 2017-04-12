@@ -18,14 +18,15 @@
 			<c:otherwise>
 				<table>
 
-					<c:forEach items="${ sessionScope.users }" var="mapUsers"
+					<c:forEach items="${ sessionScope.users }" var="Users"
 						varStatus="boucle">
 
-						<td>	Nom: ${ mapUsers.firstName} 
-								Prenom: ${ mapUsers.lastName}
-								mail: ${ mapUsers.mail} 
-								mdp : ${mapUsers.pwd }
-								adresse: ${ mapUsers.address_ville} ${ mapUsers.address_nbrue} ${ mapUsers.address_rue}
+						<td>	Nom: ${ Users.firstName} 
+								Prenom: ${ Users.lastName}
+								mail: ${ Users.mail} 
+								mdp : ${Users.pwd }
+								adresse: ${ Users.address_ville} ${ Users.address_nbrue} ${ Users.address_rue}
+								id : ${Users.getId() }
 
 						</td>
 

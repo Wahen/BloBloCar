@@ -9,8 +9,7 @@
 <body>
 	<h2>Inscription</h2>
 	<form action="AllUsers" method="post">
-	
-		<p>Random Creation</p>
+
 	
 		<p><input type="submit" value="Create random" /></p>	
 		
