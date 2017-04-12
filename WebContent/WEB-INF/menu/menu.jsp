@@ -17,7 +17,9 @@
     <p><a href="<c:url value="/"/>">Accueil</a></p>
     <p><a href="<c:url value="/CompleteProfil"/>">Mon profil</a></p>
     <p><a href="<c:url value="/Logout"/>">Déconnexion</a></p>
+    
     <c:import url="/GoogleMapUserConnected.html"/>
+    <p><a href="<c:url value="/SuprCompte"/>">Supprimer son compte :`(  ???</a></p>
     </c:if>	
     <%-- <c:if test="${ statusUserConnected }"> --%>
        <%-- <c:import url="/GoogleMapUserConnected.html"/> --%>

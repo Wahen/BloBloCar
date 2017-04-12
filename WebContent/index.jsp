@@ -8,14 +8,23 @@
 <title>BloBlocar</title>
 </head>
 <body>
-	
-	<c:import url="/WEB-INF/menu/menu.jsp" />
-	
-	<p> Create ramdom user </p>
-<%-- <a href="Register"> Inscription </a> --%>
 
-<p> <%= new java.util.Date()%></p>
-<a href="AllUsers"> Random  </a>
+	<c:import url="/WEB-INF/menu/menu.jsp" />
+
+	<%-- <a href="Register"> Inscription </a> --%>
+
+	<p>
+		<%=new java.util.Date()%></p>
+
+
+	<c:if test="${login==null}">
+		<form action="AllUsers" method="post">
+			<p>
+				<input type="submit" value="Create random" />
+			</p>
+		</form>
+	</c:if>
+
 
 </body>
 </html>
