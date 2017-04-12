@@ -25,31 +25,37 @@
 			var mobility = table[i].perimetre;
 			var contentString = table[i].nom +' '+ table[i].prenom +"<br />"+ table[i].adresse +"<br />"+ table[i].mail;
 			
-			var geocoder = new google.maps.Geocoder();
-			geocoder.geocode({'address' : address}, function(results, status) {
-				if (status == google.maps.GeocoderStatus.OK) {
-					var latitude = results[0].geometry.location.lat();
-					var longitude = results[0].geometry.location.lng();
-					var cercle = new google.maps.Circle({
-						map : carte,
-						center : new google.maps.LatLng(latitude, longitude),
-						radius: 1000*(mobility)
-					});
-					var marqueur = new google.maps.Marker({
-					    position: new google.maps.LatLng(latitude, longitude),
-					    map: carte
-					});
-					var info = new google.maps.InfoWindow({
-					    content: contentString,
-					    size: new google.maps.Size(100, 100)
-					});
-					google.maps.event.addListener(marqueur, 'click', function(){
-						info.open(carte, marqueur);
-					});
-				};
-			});
+			doMark(contentString, address, mobility, carte);
+			
 		};
 	};
+	function doMark(contentString, address, mobility, carte){
+		
+		var geocoder = new google.maps.Geocoder();
+		geocoder.geocode({'address' : address}, function(results, status) {
+			if (status == google.maps.GeocoderStatus.OK) {
+				latitude = results[0].geometry.location.lat();
+				longitude = results[0].geometry.location.lng();
+				cercle = new google.maps.Circle({
+					map : carte,
+					center : new google.maps.LatLng(latitude, longitude),
+					radius: 1000*(mobility)
+				});
+				var marqueur = new google.maps.Marker({
+				    position: new google.maps.LatLng(latitude, longitude),
+				    map: carte
+				});
+				var info = new google.maps.InfoWindow({
+				    content: contentString,
+				    size: new google.maps.Size(100, 100)
+				});
+				google.maps.event.addListener(marqueur, 'click', function(){
+					info.open(carte, marqueur);
+				});
+			};
+		});
+		
+	}
 </script>
 <script async defer
 	src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBpv8pCGZg7V6G5nU8vYe7qIZcksVqf62k&callback=initialiser">
