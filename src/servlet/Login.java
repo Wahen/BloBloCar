@@ -83,7 +83,7 @@ public class Login extends HttpServlet {
         if(error.isEmpty()==true && msgAuthentif == null){
         	statusOk=true;
         	statusMessage="Connecté"+msgAuthentif;
-        	login = email;
+        	login = "chat";
         }
         else{
         	statusOk=false;
