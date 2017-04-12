@@ -14,7 +14,6 @@ import javax.servlet.http.HttpSession;
 
 import service.UserManager;
 
-
 import model.User;
 import service.FieldValidation;
 
@@ -32,9 +31,9 @@ public class Register extends HttpServlet {
 	public static final String FIELD_ADDRESS_VILLE = "address_ville";
 	public static final String FIELD_ADDRESS_RUE = "address_rue";
 	public static final String FIELD_ADDRESS_NBRUE = "address_nbrue";
-	
+
 	public static final String FIELD_PWDCONFIRM = "pwdConfirm";
-	
+
 	public static final String ATT_USERS = "users";
 
 	/**
@@ -44,11 +43,13 @@ public class Register extends HttpServlet {
 		super();
 		// TODO Auto-generated constructor stub
 	}
+
 	@Override
-	    public void init() throws ServletException {
-	    	super.init();
-	        this.getServletContext().setAttribute( ATT_USERS, UserManager.getUserManager().getAllUser() );
+	public void init() throws ServletException {
+		super.init();
+		this.getServletContext().setAttribute(ATT_USERS, UserManager.getUserManager().getAllUser());
 	}
+
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
 	 *      response)
@@ -71,66 +72,74 @@ public class Register extends HttpServlet {
 		String firstName = request.getParameter(FIELD_FIRSTNAME);
 		String lastName = request.getParameter(FIELD_LASTNAME);
 		String address_ville = request.getParameter(FIELD_ADDRESS_VILLE);
-		String address_rue =request.getParameter(FIELD_ADDRESS_RUE);
-		String address_nbrue= request.getParameter(FIELD_ADDRESS_NBRUE);
-		
+		String address_rue = request.getParameter(FIELD_ADDRESS_RUE);
+		String address_nbrue = request.getParameter(FIELD_ADDRESS_NBRUE);
+
 		String pwdConfirm = request.getParameter(FIELD_PWDCONFIRM);
 
 		Map<String, String> erreurs = new HashMap<String, String>();
 		Map<String, String> form = new HashMap<String, String>();
 
-		String actionMessage=null;
+		String actionMessage = null;
 		String msgVal = null;
 
 		msgVal = FieldValidation.validatePwd(pwd, pwdConfirm);
 		if (msgVal == null) {
 			form.put(FIELD_PWD, pwd);
-		} else {erreurs.put(FIELD_PWDCONFIRM, msgVal);}
-		
+		} else {
+			erreurs.put(FIELD_PWDCONFIRM, msgVal);
+		}
+
 		msgVal = FieldValidation.validateFirstName(firstName);
 		if (msgVal == null) {
 			form.put(FIELD_FIRSTNAME, firstName);
-		} else {erreurs.put(FIELD_FIRSTNAME, msgVal);}
-		
+		} else {
+			erreurs.put(FIELD_FIRSTNAME, msgVal);
+		}
+
 		msgVal = FieldValidation.validateLastName(lastName);
 		if (msgVal == null) {
 			form.put(FIELD_LASTNAME, lastName);
-		} else {erreurs.put(FIELD_LASTNAME, msgVal);}
-		
+		} else {
+			erreurs.put(FIELD_LASTNAME, msgVal);
+		}
+
 		msgVal = FieldValidation.validateEmail(email);
 		if (msgVal == null) {
 			form.put(FIELD_EMAIL, email);
-		} else {erreurs.put(FIELD_EMAIL, msgVal);}
-		
+		} else {
+			erreurs.put(FIELD_EMAIL, msgVal);
+		}
+
 		User newUser = null;
-		boolean statusOk=false;
-		if(erreurs.isEmpty()==true) {
+		boolean statusOk = false;
+		if (erreurs.isEmpty() == true) {
 			HttpSession session = request.getSession();
 			newUser = new User(firstName, lastName, address_ville, address_rue, address_nbrue, email, pwd);
-			
+
 			UserManager.getUserManager().addUser(newUser);
-			
-			session.setAttribute( ATT_USERS, UserManager.getUserManager().getAllUser() );
-			this.getServletContext().setAttribute( ATT_USERS, UserManager.getUserManager().getAllUser() );
-			
-			actionMessage="Succès de l'inscription";
+
+			session.setAttribute(ATT_USERS, UserManager.getUserManager().getAllUser());
+			this.getServletContext().setAttribute(ATT_USERS, UserManager.getUserManager().getAllUser());
+
+			actionMessage = "Succès de l'inscription";
 			form = new HashMap<String, String>();
 			statusOk = true;
-		}
-		else {
+		} else {
 			actionMessage = "Echec de l'inscription";
 		}
-			
+
 		request.setAttribute("newUser", newUser);
-        request.setAttribute("form", form);
-        request.setAttribute("erreurs", erreurs);
-        request.setAttribute("statusOk", statusOk);
-        request.setAttribute("actionMessage", actionMessage);
-        
-        if(statusOk == true ) {
-        	this.getServletContext().getRequestDispatcher("/index.jsp").include( request, response );
-        }
-        else { this.getServletContext().getRequestDispatcher("/WEB-INF/register/Register.jsp").include( request, response );}
+		request.setAttribute("form", form);
+		request.setAttribute("erreurs", erreurs);
+		request.setAttribute("statusOk", statusOk);
+		request.setAttribute("actionMessage", actionMessage);
+
+		if (statusOk == true) {
+			this.getServletContext().getRequestDispatcher("/index.jsp").include(request, response);
+		} else {
+			this.getServletContext().getRequestDispatcher("/WEB-INF/register/Register.jsp").include(request, response);
+		}
 
 	}
 
