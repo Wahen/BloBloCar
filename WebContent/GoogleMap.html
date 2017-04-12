@@ -5,7 +5,7 @@
 <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
 <script type="text/javascript">
 	//création de la carte
-	function initialiser() {
+		function initialiser() {
 		var latlng = new google.maps.LatLng(48.5734053, 7.7521113);
 		var options = {
 			center : latlng,
@@ -17,10 +17,12 @@
 
 		//création des cercles
 
-		var table = [ 'Strasbourg', 'Illkirch', 'Lingolsheim', 'Schiltigheim', 'Cronenbourg' ];
+		var table = liste;
 
 		for (var i = 0; i < table.length; i++) {
-			var address = table[i];
+			
+			var address = table[i].adresse;
+			var mobility = table[i].perimetre;
 			
 			var geocoder = new google.maps.Geocoder();
 			geocoder.geocode({'address' : address}, function(results, status) {
@@ -30,7 +32,7 @@
 					var cercle = new google.maps.Circle({
 						map : carte,
 						center : new google.maps.LatLng(latitude, longitude),
-						radius: 1000 //l'intégrer avec valeur de rayonConducteur
+						radius: 1000*(mobility)
 					});
 				}
 			});

@@ -10,6 +10,7 @@
 <body>
 	<p>Bienvenue sur BloBloCar</p>
 	<c:import url="/WEB-INF/menu/menu.jsp" />
+	<c:import url="/WEB-INF/TableUsers.jsp"/>
 	
 	<p> Create ramdom user </p>
 <%-- <a href="Register"> Inscription </a> --%>

@@ -6,18 +6,18 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Insert title here</title>
-</head>
+<%-- <%=this.getServletContext().setAttribute("users", service.UserManager.getUserManager().getAllUser())%> --%>
 <body>
 <script type="text/javascript">
-var liste = [{
-	<c:forEach items="${ sessionScope.users }" var="mapUsers"
+var liste = [
+	<c:forEach items="<%=service.UserManager.getUserManager().getAllUser()%>" var="mapUsers"
 		varStatus="boucle">{
-		nom: ${ mapUsers.firstName},
-		prenom: ${ mapUsers.lastName},
+		nom: '${ mapUsers.firstName}',
+		prenom: '${ mapUsers.lastName}',
 		perimetre: ${ mapUsers.mobilityDriver},
-		mail: ${ mapUsers.mail},
-		adresse: ${ "mapUsers.address_ville"+", "+"mapUsers.address_nbrue"+", "+"mapUsers.address_rue"}
-		}
+		mail: '${ mapUsers.mail}',
+		adresse: '${ mapUsers.address_ville}, ${mapUsers.address_nbrue}, ${mapUsers.address_rue}'
+		},
 	</c:forEach>
 ];
 </script>
