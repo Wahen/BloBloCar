@@ -17,7 +17,7 @@
 
 		//création des cercles
 
-		var table = TableUsers.liste;
+		var table = ${liste};
 
 		for (var i = 0; i < table.length; i++) {
 			
@@ -45,10 +45,10 @@
 					google.maps.event.addListener(marqueur, 'click', function(){
 						info.open(carte, marqueur);
 					});
-				}
+				};
 			});
-		}
-	}
+		};
+	};
 </script>
 <script async defer
 	src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBpv8pCGZg7V6G5nU8vYe7qIZcksVqf62k&callback=initialiser">
